@@ -1,0 +1,21 @@
+# Site settings
+title: The Fun and Adventures of Coding
+header-img: img/home-bg.png
+email: mckinney99@gmail.com
+copyright_name: mckinney99
+description: > # this means to ignore newlines until "baseurl:"
+  Tips and tricks for coding tomorrow
+baseurl: "" # the subpath of your site, e.g. /blog
+twitter_username: 
+github_username:  mckinney99
+learn_profile: mckinney99
+email_username: mckinney99@gmail.com
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+paginate: 5
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+
+gems: [jekyll-paginate, jekyll-feed]
