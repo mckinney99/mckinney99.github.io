@@ -1,7 +1,7 @@
 ---
 layout: post
 title:      "Third Party Resources"
-date:       2017-11-17 19:05:49 +0000
+date:       2017-11-17 14:05:50 -0500
 permalink:  third_party_resources
 ---
 
