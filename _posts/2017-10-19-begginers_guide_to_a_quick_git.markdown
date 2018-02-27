@@ -1,7 +1,7 @@
 ---
 layout: post
 title:      "Begginers Guide to a Quick Git"
-date:       2017-10-20 00:43:01 +0000
+date:       2017-10-19 20:43:02 -0400
 permalink:  begginers_guide_to_a_quick_git
 ---
 
