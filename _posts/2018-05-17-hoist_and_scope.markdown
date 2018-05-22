@@ -8,7 +8,7 @@ permalink:  hoist_and_scope
 While struggling through some basic JS concepts, I found a pattern in some of my misleadings. It was a gap that I knew existed, but I couldn't quiet pin point what was going on. Enter hoist and scope. 
 
 
-When Javascript gets rendered in the browser, webpack sends it all together in one giant file. Instead of being rendered once from top to bottom like most programming languages, Javascrips renders the one large file twice. Functions and the declaration of variables get rendered first (or hoisted). Notice the *declaration of variables* part. When a function gets render the first time it's values are available to be used on the second render. However when a variable gets called that same first time, it's values/initialization does NOT get rendered. That happens on the second and final render of our code in the browser. Let's see what this looks like starting with examples of var. Any guess what console.log(y) might return?
+When Javascript gets rendered in the browser, webpack sends it all together in one giant file. Instead of being rendered once from top to bottom like most programming languages, Javascript renders the one large file twice. Certain functions and the declaration of variables get rendered first (or hoisted). Notice the *declaration of variables* part. When a function declaration gets rendered the first time it's values are available to be used on the second render. However when a variable gets called that same first time, it's values/initialization does NOT get rendered. That happens on the second and final render of our code in the browser. Let's see what this looks like starting with examples of var. Any guess what console.log(y) might return?
 
 
 ```
