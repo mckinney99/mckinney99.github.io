@@ -8,129 +8,111 @@ permalink:  hoist_and_scope
 While struggling through some basic JS concepts, I found a pattern in some of my misleadings. It was a gap that I knew existed, but I couldn't quiet pin point what was going on. Enter hoist and scope. 
 
 
-When Javascript gets rendered in the browser, webpack sends it all together in one giant file. Instead of being rendered once from top to bottom like most programming languages, Javascript renders the one large file twice. Certain functions and the declaration of variables get rendered first (or hoisted). Notice the *declaration of variables* part. When a function declaration gets rendered the first time it's values are available to be used on the second render. However when a variable gets called that same first time, it's values/initialization does NOT get rendered. That happens on the second and final render of our code in the browser. Let's see what this looks like starting with examples of var. Any guess what console.log(y) might return?
+When Javascript gets rendered in the browser, webpack sends it all together in one giant file. Instead of being rendered once from top to bottom like most programming languages, Javascript renders the one large file twice. Certain functions and variables get rendered first (or hoisted). When a function declaration gets rendered the first time it's values are available to be used on the second render. However when a variable gets called that same first time, it's values/initialization does NOT get rendered. That happens on the second and final render of our code in the browser. 
 
+Where exactly these values get hoisted to depends on their scope. The scope of a function or variable can depend on a lot of things. It's important to know how scope works for multiple reasons, but I know we've all been at the point of knowing something in our program exists, but you don't quiet know how to access it. 
 
-```
-var x = function() {
-  console.log(y);
-  var y = 1;
-}
-x();
-```
+Variable Scope.
 
-One might think this returns "1" when in fact you will get "undefined". Just like global variables and functions, local ones within a code block also get hoisted to the top of the their block on the first render. Again however, the variable does not get initiated until the second run. Meaning any value that var might have won't get rendered until the second pass, or in the natural top to bottom notion we are used to. Our function simply sees a y variable with no value. What about this one? Any guess?
+var: once you declare something with var it's declaration is available on the top of that scope, but it's value initialization isn't determined until the second pass. For example:
 
 ```
-y = 2
-
-var x = function() {
-  console.log(y);
-  var y = 1;
-}
-x();
-```
-
-If you guessed 1 or 2 you are not alone, however you are incorrect. Again, the var y inside our function gets hoisted to the top, but not it's value of 1. Because of this, the function doesn't look for a global variable of y. It already sees a local one that again, is not defined. The return value is "undefined". Our browser essiantelly does this: 
-
-```
-var y; //our browser hoists the variable to the top just like this on it's first render.
-
-var x = function() {
-  console.log(y); //we are now calling on an empty var y on the second render. 
-  y = 1; //the one doesn't get assigned because var y is already taken locally. 
+function do_something() {
+  console.log(bar); // undefined
+  var bar = 111;
+  console.log(bar); // 111
 }
 ```
 
-This again will return "undefined". However if we make one small change to our code, we can get this thing to work.
+The computer reads this as:
 
 ```
-var x = function() {
-  var y = 1; 
-  console.log(y); // 
+// is understood as: 
+function do_something() {
+  var bar;
+  console.log(bar); // undefined
+  bar = 111;
+  console.log(bar); // 111
 }
-x();
 ```
 
-The browser reads this as:
+However, if a var is defined without a decleration (i.e. i = 10), then Javascript will seek out wherever it was initially declared as a var, and make the appropriate value accessible within that scope. For example:
 
 ```
-var y; //on first render
-
-var x = function() {
-  y = 1; //on second render
-  console.log(y); // 
-}
-x();
-```
-To save time and stress, I always declare my variables right up front in the begginning of my function. This way it looks how the computer renders it. It's an easy little cheat that can be taken for granted.
-
-```
-var x = function() {
-  var y; 
-  y = 1; 
-  console.log(y); // output = 1
-}
-x();
+(function () {
+  for (i = 0; i<10; i++){
+  console.log(i)
+  }
+})()
+console.log("after loop", i);
 ```
 
-The same rule of variables and their values when hoisted is the same for var, let and const. However the scope of these keywords is what sets them apart.
-
-var = available globally at any time. Wether declared in a nested function or not. 
-
-let = available only in whatever local scope it was created in. 
-
-const = similar to var, available globally, but can only be declared once.
-
-These changes don't occur in block level functions. For example:
-
+i is given a value in the local scope of this immediately-invoked function expression (search IIFE for more information on this type of function), so one would naturally think the value of i is only available inside of that scope. Instead JS looks for a variable of i in the local scope and can't find it. If this function were to be nestled in even more functions, JS will continue to look for the var of i until it hits the global scope. Once it hits the global scope and no i variable is found, it simply creates one for us. Which is typically not a good thing... The result of the above code is:
 ```
-let y = 2
-
-var x = function() {
-  console.log(y); // still outputs 2
-}
-x();
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+after loop 10
 ```
 
-They do however occur inside of JS type block. Or block within with a function. For example:
+As you can see, there is good reason why let and const got introduced to ES6. Let's take the following function and try assigning i a variable declared with let.
 
 ```
-function a(c) {
-// a doesn't exist here
-
-// console.log(a); => ReferenceError: a is not defined
-if (a) {
-        let a = "x";
-        // some other code
-        return a;
-    } else {
-        // a doesn't exist here as well
-        return false;
-    }
-}
-a();
-```
-This returns "x" because our let variable is not only true, but because it's returning only our local scope. Unlike the const keywork, the let variable is unavailable anywhere else in our code. 
-
-```
-function a(c) {
-// a does exist here
-return a;
-
-if (a) {
-        const a = "x";
-        // some other code
-        return a;
-    } else {
-        // a exists here as well
-        return false;
-    }
-}
-a();
+(function () {
+  for (let i = 0; i<10; i++){
+  console.log(i)
+  }
+})()
+console.log("after loop", i);
 ```
 
-If you were to pick one that you use all the time, make it const. It will lead to fewer errors, especially when it comes to accidentally defining duplicate variables. It's easy enough to reserve let for our code blocks {}.
+puts out the following:
+
+```
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+ReferenceError: i is not defined
+    at eval:6:27
+    at eval
+    at new Promise
+```
+
+As you can see, let is only available in the local scope, and therefore cannot be called from outside of it's scope. 
+
+const is also a "new" feature with ES6. Const is similar to let in that it stays inside whatever block you call it in, however const cannot be reassigned unlike let. For example:
+
+```
+let i = 20;
+i = 100;
+
+console.log(i) // 100
+```
+
+let is being reassigned from 20, to 100. However if we try this using const we will get an error:
+
+```
+const i = 20;
+i = 100;
+
+console.log(i) // SyntaxError: Assignment to constant variable: i at 2:0
+```
+
+If you were to pick one that you use all the time, make it const. It will lead to fewer errors, especially when it comes to accidentally defining duplicate variables. It's easy enough to reserve let for variables we know will have to change.
 
 Ok so enough on this variable stuff. What about functions?
 
