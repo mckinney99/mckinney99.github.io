@@ -30,7 +30,8 @@ p {
 }
 
 .bg-1 {
-  background: url("lake.jpg_large")no-repeat center center;
+  background: url("ocean.jpg")no-repeat center center;
+
 }
 
 .img-responsive {
