@@ -16,7 +16,7 @@ Repl is a beautiful website that allows you to select your coding language, and 
 
 **Books Books Books**
 
-I was struggleing hard through the first half of OO Ruby when my advisor suggested a book. "The Well-Grounded Rubyist" by David A. Black. I was hesitant at first, but went ahead and bought the book. The second I opened the first page I could not put it down. Concepts of the language we're being explained to me in a totally different light. Some better, and some worse. I felt gaps in my knowledge of Ruby, but after reading just the first 100 pages of this book, I feel most those gaps are now filled. Throughout the Flatiron course, I plan on having a book by my side as I go through and learn each lesson. Right now I typically do the lessons during the day, and read at night. This helps solidify what I've already learned, and expand on what I haven't. 
+I was struggleing hard through the first half of OO Ruby when my advisor suggested a book. "The Well-Grounded Rubyist" by David A. Black. I was hesitant at first, but went ahead and bought the book. The second I opened the first page I could not put it down. Concepts of the language we're being explained to me in a totally different light. Some better, and some worse. I felt gaps in my knowledge of Ruby, but after reading just the first 100 pages of this book, I feel most those gaps are now filled. Throughout the Flatiron course, I plan on having a book by my side as I go through and learn each lesson. Right now I typically do the lessons during the day, and read at night. This helps solidify what I've already learned, and expand on what I haven't.
 
 **Create Your Tool Kit**
 
@@ -26,8 +26,8 @@ and finally:
 
 **Go Slow!**
 
-If my mind is not in the right setting, I struggle. You need to be calm and relaxed if you really want to learn code. Take each failure, and each line of code with thought. It takes times. Learning to code involves a lot of patience, and brain power. You need to give your brain breaks throughout the day. Have side projects of things to do not in front of a computer screen. I work best when I'm inspired, curious, and relaxed. Don't get itchy trying to solve problems as quick as possible. It only hurts you down the line. 
+If my mind is not in the right setting, I struggle. You need to be calm and relaxed if you really want to learn code. Take each failure, and each line of code with thought. It takes times. Learning to code involves a lot of patience, and brain power. You need to give your brain breaks throughout the day. Have side projects of things to do not in front of a computer screen. I work best when I'm inspired, curious, and relaxed. Don't get itchy trying to solve problems as quick as possible. It only hurts you down the line.
 
-I hope these methods that have saved me in the past will continue to help others on their journey of learning to code. 
+I hope these methods that have saved me in the past will continue to help others on their journey of learning to code.
 
 Happy coding!

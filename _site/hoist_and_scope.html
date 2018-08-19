@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Hoist and Scope - Hello, world! I'm Eric McKinney.</title>
+
+  <!-- Edit site and author settings in `_config.yml` to make the social details your own -->
+
+    <meta content="Hello, world! I'm Eric McKinney." property="og:site_name">
+  
+    <meta content="Hoist and Scope" property="og:title">
+  
+  
+    <meta content="article" property="og:type">
+  
+  
+    <meta content="Music Production. Web Development. Project Management.
+" property="og:description">
+  
+  
+    <meta content="http://localhost:4000/hoist_and_scope" property="og:url">
+  
+  
+    <meta content="2018-05-17T15:55:49-05:00" property="article:published_time">
+    <meta content="http://localhost:4000/about/" property="article:author">
+  
+  
+    <meta content="http://localhost:4000/assets/img/eric.png" property="og:image">
+  
+  
+    
+  
+  
+    
+  
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@https://twitter.com/waitonce">
+    <meta name="twitter:creator" content="@">
+  
+    <meta name="twitter:title" content="Hoist and Scope">
+  
+  
+    <meta name="twitter:url" content="http://localhost:4000/hoist_and_scope">
+  
+  
+    <meta name="twitter:description" content="Music Production. Web Development. Project Management.
+">
+  
+  
+    <meta name="twitter:image:src" content="http://localhost:4000/assets/img/eric.png">
+  
+
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta property="og:image" content="">
+	<link rel="shortcut icon" href="/assets/img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/img/favicon/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicon/apple-touch-icon-144x144.png">
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#263959">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#263959">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#263959">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Serif:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/assets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- Styles -->
+	<link rel="stylesheet" href="/assets/css/main.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <aside class="sidebar">
+  <header>
+    <div class="about">
+      <div class="cover-author-image">
+        <a href="/"><img src="/assets/img/eric.png" alt="Eric McKinney"></a>
+      </div>
+      <div class="author-name">Eric McKinney</div>
+      <p>I am a web developer focusing on front-end development. Always hungry to keep learning.</p>
+    </div>
+  </header> <!-- End Header -->
+  <footer>
+    <section class="contact">
+      <h3 class="contact-title">Contact me</h3>
+      <ul>
+        
+          <li><a href="https://twitter.com/artemsheludko_" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+        
+        
+          <li><a href="https://facebook.com/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+        
+        
+          <li class="github"><a href="http://github.com/mckinney99" target="_blank"><i class="fa fa-github"></i></a></li>
+        
+        
+          <li class="linkedin"><a href="https://in.linkedin.com/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+        
+        
+          <li class="email"><a href="mailto:example.david@blog.com"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
+        
+      </ul>
+    </section> <!-- End Section Contact -->
+    <div class="copyright">
+      <p>2018 &copy; Eric McKinney</p>
+    </div>
+  </footer> <!-- End Footer -->
+</aside> <!-- End Sidebar -->
+<div class="content-box clearfix">
+  <article class="article-page">
+  <div class="page-content">
+    
+    
+    <div class="wrap-content">
+      <header class="header-page">
+        <h1 class="page-title">Hoist and Scope</h1>
+        <div class="page-date"><span>2018, May 17&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+      </header>
+      <p>While struggling through some basic JS concepts, I found a pattern in some of my misleadings. It was a gap that I knew existed, but I couldn’t quiet pin point what was going on. Enter hoist and scope.</p>
+
+<p>When Javascript gets rendered in the browser, webpack sends it all together in one giant file. Instead of being rendered once from top to bottom like most programming languages, Javascript renders the one large file twice. Certain functions and variables get rendered first (or hoisted). When a function declaration gets rendered the first time it’s values are available to be used on the second render. However when a variable gets called that same first time, it’s values/initialization does NOT get rendered. That happens on the second and final render of our code in the browser.</p>
+
+<p>Where exactly these values get hoisted to depends on their scope. The scope of a function or variable can depend on a lot of things. It’s important to know how scope works for multiple reasons, but I know we’ve all been at the point of knowing something in our program exists, but you don’t quiet know how to access it.</p>
+
+<p>Variable Scope.</p>
+
+<p>var: once you declare something with var it’s declaration is available on the top of that scope, but it’s value initialization isn’t determined until the second pass. For example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function do_something() {
+  console.log(bar); // undefined
+  var bar = 111;
+  console.log(bar); // 111
+}
+</code></pre></div></div>
+
+<p>The computer reads this as:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// is understood as:
+function do_something() {
+  var bar;
+  console.log(bar); // undefined
+  bar = 111;
+  console.log(bar); // 111
+}
+</code></pre></div></div>
+
+<p>However, if a var is defined without a decleration (i.e. i = 10), then Javascript will seek out wherever it was initially declared as a var, and make the appropriate value accessible within that scope. For example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(function () {
+  for (i = 0; i&lt;10; i++){
+  console.log(i)
+  }
+})()
+console.log("after loop", i);
+</code></pre></div></div>
+
+<p>i is given a value in the local scope of this immediately-invoked function expression (search IIFE for more information on this type of function), so one would naturally think the value of i is only available inside of that scope. Instead JS looks for a variable of i in the local scope and can’t find it. If this function were to be nestled in even more functions, JS will continue to look for the var of i until it hits the global scope. Once it hits the global scope and no i variable is found, it simply creates one for us. Which is typically not a good thing… The result of the above code is:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+after loop 10
+</code></pre></div></div>
+
+<p>As you can see, there is good reason why let and const got introduced to ES6. Let’s take the following function and try assigning i a variable declared with let.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(function () {
+  for (let i = 0; i&lt;10; i++){
+  console.log(i)
+  }
+})()
+console.log("after loop", i);
+</code></pre></div></div>
+
+<p>puts out the following:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+ReferenceError: i is not defined
+    at eval:6:27
+    at eval
+    at new Promise
+</code></pre></div></div>
+
+<p>As you can see, let is only available in the local scope, and therefore cannot be called from outside of it’s scope.</p>
+
+<p>const is also a “new” feature with ES6. Const is similar to let in that it stays inside whatever block you call it in, however const cannot be reassigned unlike let. For example:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let i = 20;
+i = 100;
+
+console.log(i) // 100
+</code></pre></div></div>
+
+<p>let is being reassigned from 20, to 100. However if we try this using const we will get an error:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const i = 20;
+i = 100;
+
+console.log(i) // SyntaxError: Assignment to constant variable: i at 2:0
+</code></pre></div></div>
+
+<p>If you were to pick one that you use all the time, make it const. It will lead to fewer errors, especially when it comes to accidentally defining duplicate variables. It’s easy enough to reserve let for variables we know will have to change.</p>
+
+<p>Ok so enough on this variable stuff. What about functions?</p>
+
+<p>Functions can be hoisted with their values UNLESS it is declared using an expression. Only function declarations can pass values and initialize on the first render. For examples:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>willThisWork();
+
+function willThisWork() {
+  console.log("yes")
+}
+//outputs =&gt; "yes"
+</code></pre></div></div>
+
+<p>However when we do the same exact thing but instead use a function expression we get:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>willThisWork();
+
+var willThisWork = function () {
+  console.log("yes")
+}
+//outputs =&gt; TypeError
+</code></pre></div></div>
+
+<p>So for clarification:</p>
+
+<p>What gets hoisted?
+-All variables without their values/initiation.
+-Function expressions without their values/initiation.
+-Function declarations with their values/initiation.</p>
+
+<p>Everything else gets rendered on the second pass. I hope this clears things up in what can be a confusing topic. Happy coding!</p>
+
+      <div class="page-footer">
+        <div class="page-share">
+          <a href="https://twitter.com/intent/tweet?text=Hoist and Scope&url=http://localhost:4000/hoist_and_scope" title="Share on Twitter" rel="nofollow" target="_blank">Twitter</a>
+          <a href="https://facebook.com/sharer.php?u=http://localhost:4000/hoist_and_scope" title="Share on Facebook" rel="nofollow" target="_blank">Facebook</a>
+          <a href="https://plus.google.com/share?url=http://localhost:4000/hoist_and_scope" title="Share on Google+" rel="nofollow" target="_blank">Google+</a>
+        </div>
+        <div class="page-tag">
+          
+        </div>
+      </div>
+      <section class="comment-area">
+  <div class="comment-wrapper">
+    
+    <div id="disqus_thread" class="article-comments"></div>
+    <script>
+      (function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//mr-brown.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </div>
+</section> <!-- End Comment Area -->
+
+    </div> <!-- End Wrap Content -->
+  </div> <!-- End Page Content -->
+</article> <!-- End Article Page -->
+
+</div>
+
+  </div>
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '', 'auto');
+  ga('send', 'pageview');
+</script> <!-- End Analytics -->
+
+</body>
+</html>

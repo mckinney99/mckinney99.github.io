@@ -5,12 +5,12 @@ date:       2018-05-17 20:55:49 +0000
 permalink:  hoist_and_scope
 ---
 
-While struggling through some basic JS concepts, I found a pattern in some of my misleadings. It was a gap that I knew existed, but I couldn't quiet pin point what was going on. Enter hoist and scope. 
+While struggling through some basic JS concepts, I found a pattern in some of my misleadings. It was a gap that I knew existed, but I couldn't quiet pin point what was going on. Enter hoist and scope.
 
 
-When Javascript gets rendered in the browser, webpack sends it all together in one giant file. Instead of being rendered once from top to bottom like most programming languages, Javascript renders the one large file twice. Certain functions and variables get rendered first (or hoisted). When a function declaration gets rendered the first time it's values are available to be used on the second render. However when a variable gets called that same first time, it's values/initialization does NOT get rendered. That happens on the second and final render of our code in the browser. 
+When Javascript gets rendered in the browser, webpack sends it all together in one giant file. Instead of being rendered once from top to bottom like most programming languages, Javascript renders the one large file twice. Certain functions and variables get rendered first (or hoisted). When a function declaration gets rendered the first time it's values are available to be used on the second render. However when a variable gets called that same first time, it's values/initialization does NOT get rendered. That happens on the second and final render of our code in the browser.
 
-Where exactly these values get hoisted to depends on their scope. The scope of a function or variable can depend on a lot of things. It's important to know how scope works for multiple reasons, but I know we've all been at the point of knowing something in our program exists, but you don't quiet know how to access it. 
+Where exactly these values get hoisted to depends on their scope. The scope of a function or variable can depend on a lot of things. It's important to know how scope works for multiple reasons, but I know we've all been at the point of knowing something in our program exists, but you don't quiet know how to access it.
 
 Variable Scope.
 
@@ -27,7 +27,7 @@ function do_something() {
 The computer reads this as:
 
 ```
-// is understood as: 
+// is understood as:
 function do_something() {
   var bar;
   console.log(bar); // undefined
@@ -92,7 +92,7 @@ ReferenceError: i is not defined
     at new Promise
 ```
 
-As you can see, let is only available in the local scope, and therefore cannot be called from outside of it's scope. 
+As you can see, let is only available in the local scope, and therefore cannot be called from outside of it's scope.
 
 const is also a "new" feature with ES6. Const is similar to let in that it stays inside whatever block you call it in, however const cannot be reassigned unlike let. For example:
 
@@ -141,12 +141,8 @@ var willThisWork = function () {
 So for clarification:
 
 What gets hoisted?
--All variables without their values/initiation. 
--Function expressions without their values/initiation. 
--Function declarations with their values/initiation. 
+-All variables without their values/initiation.
+-Function expressions without their values/initiation.
+-Function declarations with their values/initiation.
 
-Everything else gets rendered on the second pass. I hope this clears things up in what can be a confusing topic. Happy coding! 
-
-
-
-
+Everything else gets rendered on the second pass. I hope this clears things up in what can be a confusing topic. Happy coding!

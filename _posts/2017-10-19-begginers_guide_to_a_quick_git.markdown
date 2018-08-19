@@ -27,7 +27,7 @@ Pushing:
 2. git add . (use " . " for all files changed, or point to indivisual file)  
 3. git commit -m “add your upload comment here”
 4. git push -u origin <branch-name-here>
-  
+
 Pushing to master branch:
 1. in terminal: git checkout master
 2. git merge <branch-name-here>
@@ -39,4 +39,3 @@ Submit pull request
 3. name request “Done” or whatever you want.
 4. add to master branch in learn-co-students
 5. submit pull request
-

@@ -6,11 +6,11 @@ permalink:  feeling_slug_ish
 ---
 
 
-As I finish up my final project for Sinatra, I am reminded of how difficult this topic was for me. Too many files got me too overwhelmed in the beginning, and I was feeling pretty sluggish. This final project has answered most of my remaining questions on this topic, and I'm now feeling pretty confident in my Sinatra/Routes knowledge. So to commerorate my sluggish feelings, here is a simple "how to" on getting slugs to work with your Sinatra/MVC style app. 
+As I finish up my final project for Sinatra, I am reminded of how difficult this topic was for me. Too many files got me too overwhelmed in the beginning, and I was feeling pretty sluggish. This final project has answered most of my remaining questions on this topic, and I'm now feeling pretty confident in my Sinatra/Routes knowledge. So to commerorate my sluggish feelings, here is a simple "how to" on getting slugs to work with your Sinatra/MVC style app.
 
 ```
 #App > Concerns
-#In order to properly use slugs, we need to ensure the names we elist to create slugs, are slug friendly. 
+#In order to properly use slugs, we need to ensure the names we elist to create slugs, are slug friendly.
 #In our app folder we great a new folder, "Concerns" where we put this code:
 
 
@@ -32,7 +32,7 @@ module Slugifiable
 end
 ```
 
-Once our Slugifiable class is created, we can now use slug in our Controller methods. A simple way to think of a slug, is replace any word with ":id" to ":slug". Unlike the ID however, the slug is the actual name of the obect being created. We would not want to use slugs on personable, or irrelevent information. 
+Once our Slugifiable class is created, we can now use slug in our Controller methods. A simple way to think of a slug, is replace any word with ":id" to ":slug". Unlike the ID however, the slug is the actual name of the obect being created. We would not want to use slugs on personable, or irrelevent information.
 
 Below we see how to find an object in a database using slug.
 
@@ -54,9 +54,3 @@ The power of slug can really be displayed when we want to show an array of links
 <a href="/recipes/<%=r.slug%>"><%= r.name %></a><br><br>
 <%end%>
 ```
-
-
-
-
-
-

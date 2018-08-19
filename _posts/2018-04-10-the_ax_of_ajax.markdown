@@ -8,7 +8,7 @@ permalink:  the_ax_of_ajax
 
 Last week I ran into a problem that took over a week, and several instructors to resolve. I can't be the only one this has happened to, so I figured I'd share my problem in hopes futures students don't have to go through what I did. I'm still missing hair!!
 
-So the setup is this. I have a form with 4 fields that create a "song". For some reason after I was done posting this song in Ajax, the song would show up, but dissappear after a refresh of the page. AND no the problem WAS NOT turbolinks. 
+So the setup is this. I have a form with 4 fields that create a "song". For some reason after I was done posting this song in Ajax, the song would show up, but dissappear after a refresh of the page. AND no the problem WAS NOT turbolinks.
 
 Here WAS my code:
 

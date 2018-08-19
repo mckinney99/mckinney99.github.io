@@ -19,7 +19,7 @@ doc = Nokogiri::HTML(open('https://vinepair.com/articles/50-most-popular-cocktai
       end
 ```
 
-The way Nokogiri scrubs through a webpage, is node by node. I had troubled with finding the different p tags within the page since they were not seperated by any divs. I ended up using the .next method to skip ahead to the next node. I also had to include an if state in case that .next.next was in fact a picture. If you visit the website located in the Nokogiri::HTML, you will see that under some of the cockail names lies a picture. So in my code I made it jump ahead to the next set of nodes if a picture was in fact present. 
+The way Nokogiri scrubs through a webpage, is node by node. I had troubled with finding the different p tags within the page since they were not seperated by any divs. I ended up using the .next method to skip ahead to the next node. I also had to include an if state in case that .next.next was in fact a picture. If you visit the website located in the Nokogiri::HTML, you will see that under some of the cockail names lies a picture. So in my code I made it jump ahead to the next set of nodes if a picture was in fact present.
 
 Another fun thing I learned:
 
@@ -31,8 +31,6 @@ def find_info(input)
   end
 ```
 
-Indexing through arrays filled with hashes. It took me a lot longer than I expected to figure this out. At first I was trying to manipulate the array, but later I realized it would be easier to simply assign the array a variable, aka drink, and puts the hash keys to that individual index hash of the array. 
+Indexing through arrays filled with hashes. It took me a lot longer than I expected to figure this out. At first I was trying to manipulate the array, but later I realized it would be easier to simply assign the array a variable, aka drink, and puts the hash keys to that individual index hash of the array.
 
 All in all it was a fun project. I feel like I need a little more experience in Ruby, but am confident that I have the fundamentals. Keep coding on!
-
-
